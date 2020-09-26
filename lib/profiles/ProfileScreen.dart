@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:medium_app/screens/CreateProfileScreen.dart';
+import 'package:medium_app/profiles/CreateProfileScreen.dart';
 import 'package:medium_app/NetworkHandler.dart';
 
 class ProfileScreen extends StatefulWidget {

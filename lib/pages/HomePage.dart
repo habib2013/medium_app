@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medium_app/screens/HomeScreen.dart';
-import 'package:medium_app/screens/ProfileScreen.dart';
+import 'package:medium_app/profiles/ProfileScreen.dart';
 
 class HomePage extends StatefulWidget {
   @override

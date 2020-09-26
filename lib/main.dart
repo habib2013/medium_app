@@ -3,6 +3,7 @@ import 'package:medium_app/pages/HomePage.dart';
 import 'package:medium_app/pages/Onboarding.dart';
 import 'package:medium_app/pages/welcomePage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:medium_app/profiles/MainProfile.dart';
 void main() {
   runApp(MyApp());
 }
@@ -23,19 +24,19 @@ class _MyAppState extends State<MyApp> {
   }
 
   void checkLogin() async {
-    var token  = storage.delete(key: "token");
-//    var token  = storage.read(key: "token");
+//    var token  = storage.delete(key: "token");
+    var token  = storage.read(key: "token");
 
-//  if (token != null) {
-//      setState(() {
-//        page = HomePage();
-//      });
-//    }
-//    else {
-//      setState(() {
-//        page = WelcomePage();
-//      });
-//    }
+  if (token != null) {
+      setState(() {
+        page = HomePage();
+      });
+    }
+    else {
+      setState(() {
+        page = WelcomePage();
+      });
+    }
   }
 
   @override
@@ -43,7 +44,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Medium App',
-      home: page,
+      home: MainProfile(),
     );
   }
 }
