@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:medium_app/profiles/CreateProfileScreen.dart';
 import 'package:medium_app/NetworkHandler.dart';
+import 'package:medium_app/profiles/MainProfile.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -48,13 +49,8 @@ Widget page = CircularProgressIndicator();
   }
 
   Widget showProfile(){
-    return Center(
-      child: Column(
-        children: [
-          Text('Profile is available'),
-        ],
-      ),
-    );
+    return MainProfile();
+
   }
 
   Widget button(){

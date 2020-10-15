@@ -237,7 +237,7 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               },
               child: Icon(
               Icons.camera_alt,
-              color: Colors.teal,
+              color: Colors.blueGrey,
               size: 28.0,
             ),
             ),

@@ -155,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [Colors.deepPurple, Colors.deepPurpleAccent,])),
+                colors: [Colors.blueGrey[300], Colors.blueGrey[500],])),
         child:  circular ? CircularProgressIndicator() :  Text(
           'Login',
           style: TextStyle(fontSize: 20, color: Colors.white,fontFamily: 'Raleway'),
@@ -245,53 +245,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _googleButton() {
-    return Container(
-      height: 50,
-      margin: EdgeInsets.symmetric(vertical: 20),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-      ),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(5),
-                    topLeft: Radius.circular(5)),
-              ),
-              alignment: Alignment.center,
-              child: Text('G',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 25,
-                      fontWeight: FontWeight.w400)),
-            ),
-          ),
-          Expanded(
-            flex: 5,
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.red[400],
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(5),
-                    topRight: Radius.circular(5)),
-              ),
-              alignment: Alignment.center,
-              child: Text('Log in with Google',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w400)),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _createAccountLabel() {
     return InkWell(
@@ -402,7 +355,6 @@ class _LoginPageState extends State<LoginPage> {
                     _divider(),
                     _facebookButton(),
 
-                    _googleButton(),
                     SizedBox(height: height * .055),
                     _createAccountLabel(),
                   ],

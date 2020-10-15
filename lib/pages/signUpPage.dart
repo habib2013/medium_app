@@ -173,7 +173,7 @@ class _SignUpPageState extends State<SignUpPage> {
             gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [Colors.deepPurple, Colors.deepPurpleAccent,])),
+                 colors: [Colors.blueGrey[300], Colors.blueGrey[500],])),
         child: circular ? CircularProgressIndicator() : Text(
           'Register Now',
           style: TextStyle(

@@ -1,4 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:medium_app/NetworkHandler.dart';
+import 'package:medium_app/models/profileModel.dart';
 
 class MainProfile extends StatefulWidget {
   @override
@@ -6,6 +10,25 @@ class MainProfile extends StatefulWidget {
 }
 
 class _MainProfileState extends State<MainProfile> {
+  bool circular = true;
+  NetworkHandler networkHandler = NetworkHandler();
+  ProfileModel profileModel = ProfileModel();
+  void initState(){
+    super.initState();
+    fetchData();
+  }
+  void fetchData() async{
+    var response = await networkHandler.get('profile/getData');
+    setState(() {
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        Map<String,dynamic> output = json.decode(response.body);
+        profileModel = ProfileModel.fromJson(output["data"]);
+      }
+        print(profileModel.username ?? 'Nothing here');
+      circular = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +54,7 @@ class _MainProfileState extends State<MainProfile> {
           )
         ],
       ),
-      body: ListView(
+      body: circular ? Center(child: CircularProgressIndicator()) : ListView(
         children: [
           head(),
           Divider(
@@ -54,18 +77,19 @@ class _MainProfileState extends State<MainProfile> {
             child: CircleAvatar(
               backgroundColor: Colors.purpleAccent,
               radius: 50,
+                backgroundImage: NetworkHandler().getImage(profileModel.username),
             ),
           ),
           SizedBox(height: 20.0),
           Text(
-            "Oladosu Tayo",
+            profileModel.name ?? "",
             style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Raleway',
                 fontSize: 19),
           ),
           SizedBox(height: 5.0),
-          Text("💼 App Developer || Web Developer || Full Stack Developer"),
+          Text(profileModel.profession ?? ''),
         ],
       ),
     );
@@ -94,41 +118,44 @@ class _MainProfileState extends State<MainProfile> {
   }
 
   Widget getFollow(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
+    return Padding(
+      padding: const EdgeInsets.all(2.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
 
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Row(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Row(
 
-              children: [
-                Text(
-                  " 14  ",
-                  style: TextStyle(fontSize: 27.0, fontWeight: FontWeight.bold),
-                ),
-                Text(' Following')
-              ],
-            ),
+                children: [
+                  Text(
+                    " 14  ",
+                    style: TextStyle(fontSize: 27.0, fontWeight: FontWeight.bold),
+                  ),
+                  Text(' Following')
+                ],
+              ),
 
-            SizedBox(height: 40.0,width: MediaQuery.of(context).size.width / 3.5,child: VerticalDivider(thickness: 3.0,),),
-            Row(
+              SizedBox(height: 40.0,width: MediaQuery.of(context).size.width / 3.5,child: VerticalDivider(thickness: 2.0,),),
+              Row(
 
-              children: [
-                Text(
-                  "17  ",
-                  style: TextStyle(fontSize: 27.0, fontWeight: FontWeight.bold),
-                ),
-                Text(' Followers',)
-              ],
+                children: [
+                  Text(
+                    "17  ",
+                    style: TextStyle(fontSize: 27.0, fontWeight: FontWeight.bold),
+                  ),
+                  Text(' Followers',)
+                ],
 
-            ),
-            Divider(thickness: 3.0,)
-          ],
-        ),
-      ],
+              ),
+              Divider(thickness: 3.0,)
+            ],
+          ),
+        ],
+      ),
     );
   }
 }

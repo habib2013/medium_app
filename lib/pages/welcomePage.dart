@@ -81,7 +81,7 @@ class _WelcomePageState extends State<WelcomePage>   with TickerProviderStateMix
               color: Colors.white),
           child: Text(
             'Login',
-            style: TextStyle(fontSize: 20, color: Colors.deepPurple,fontFamily: 'Raleway'),
+            style: TextStyle(fontSize: 20, color: Colors.blueGrey,fontFamily: 'Raleway'),
           ),
         ),
       ),
@@ -156,7 +156,7 @@ class _WelcomePageState extends State<WelcomePage>   with TickerProviderStateMix
           children: [
             TextSpan(
               text: 'pM',
-              style: TextStyle(color: Colors.purple, fontSize: 30, fontFamily: 'RalewayBold'),
+              style: TextStyle(color: Colors.white, fontSize: 30, fontFamily: 'RalewayBold'),
             ),
             TextSpan(
               text: 'ee',
@@ -185,7 +185,7 @@ class _WelcomePageState extends State<WelcomePage>   with TickerProviderStateMix
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Colors.deepPurpleAccent[200], Colors.deepPurpleAccent[400],])
+                  colors: [Colors.blueGrey, Colors.blueGrey[200],])
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
