@@ -8,6 +8,7 @@ import 'package:medium_app/pages/welcomePage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:medium_app/profiles/MainProfile.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:medium_app/blogs/addBlog.dart';
 
 void main() {
   runApp(MyApp());

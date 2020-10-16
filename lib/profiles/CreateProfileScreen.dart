@@ -83,18 +83,6 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
               color: validatedInput ==  false ?  Colors.red : Colors.deepPurpleAccent,
             ),
           ) ,
-//          prefixIcon: Icon(
-//            title == "Full Name"
-//                ? Icons.person
-//                : title == 'Title'
-//                    ? Icons.book
-//                    : title == 'Profession'
-//                        ? Icons.work
-//                        : title == 'Date Of Birth'
-//                            ? Icons.calendar_today
-//                            : title == 'About' ? Icons.description : null,
-//            color: Colors.deepPurpleAccent,
-//          ),
           errorStyle: TextStyle(color: Colors.red),
           hintText: title,
           labelText: title,
