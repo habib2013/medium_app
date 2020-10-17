@@ -1,16 +1,22 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:medium_app/blogs/addBlog.dart';
+import 'package:medium_app/models/profileModel.dart';
 import 'package:medium_app/pages/welcomePage.dart';
 import 'package:medium_app/screens/HomeScreen.dart';
 import 'package:medium_app/profiles/ProfileScreen.dart';
 import 'package:showcaseview/showcaseview.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:medium_app/NetworkHandler.dart';
+
 
 class HomePage extends StatelessWidget {
+
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
       body: ShowCaseWidget(
@@ -42,6 +48,8 @@ class _NewHomePageState extends State<NewHomePage> {
   GlobalKey _five = GlobalKey();
 
   final storage = new FlutterSecureStorage();
+  NetworkHandler networkHandler = NetworkHandler();
+  ProfileModel profileModel = ProfileModel();
 
   int currentState = 0;
   bool isViewedAlready = false;
@@ -51,11 +59,67 @@ class _NewHomePageState extends State<NewHomePage> {
   ];
   List<String> titleString = ['Home', 'Profile'];
 
+
+  void checkProfile() async{
+    var response = await networkHandler.get('profile/checkProfile');
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Map<String,dynamic> output = json.decode(response.body);
+
+      if (output['status'] == true) {
+
+        setState(() {
+          profilePhoto = Column(
+            children:[ CircleAvatar(
+              backgroundColor: Colors.purpleAccent,
+              radius: 50,
+              backgroundImage: NetworkHandler().getImage(output['username']),
+            ),
+            SizedBox(height: 4.0,),
+            Text(output['username']),
+            ]
+          );
+        });
+      }
+      else {
+        setState(() {
+          profilePhoto = Column(
+            children: [Container(
+              height:100,
+              width: 100,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50.0),
+                color: Colors.black,
+              ),
+            ),
+              Text(output['username']),
+            ],
+          );
+        });
+      }
+
+    }
+  }
+
+
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    checkProfile();
   }
+
+  Widget profilePhoto =  Container(
+    height:100,
+    width: 100,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(50.0),
+      color: Colors.black,
+    ),
+  );
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +143,7 @@ class _NewHomePageState extends State<NewHomePage> {
       }
     });
 
+
     return Scaffold(
       drawer: Drawer(
         child: ListView(
@@ -86,19 +151,13 @@ class _NewHomePageState extends State<NewHomePage> {
             DrawerHeader(
               child: Column(
                 children: [
-                  Container(
-                  height:100,
-                    width: 100,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50.0),
-                      color: Colors.black,
-                    ),
-                ),
+                  profilePhoto,
                   SizedBox(height: 10,),
-                    Text('@Habib'),
+
                 ],
               ),
             ),
+
             ListTile(
               title: Text('All Posts',style: TextStyle(fontFamily: 'Raleway',color: Colors.black),),
               trailing: Icon(Icons.launch),

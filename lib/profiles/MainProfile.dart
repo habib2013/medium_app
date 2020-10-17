@@ -24,7 +24,7 @@ class _MainProfileState extends State<MainProfile> {
         Map<String,dynamic> output = json.decode(response.body);
         profileModel = ProfileModel.fromJson(output["data"]);
       }
-        print(profileModel.username ?? 'Nothing here');
+//        print(profileModel.username ?? 'Nothing here');
       circular = false;
     });
   }
