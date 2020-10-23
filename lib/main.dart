@@ -10,6 +10,7 @@ import 'package:medium_app/profiles/MainProfile.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:medium_app/blogs/addBlog.dart';
 
+
 void main() {
   runApp(MyApp());
 }
@@ -89,7 +90,7 @@ class _SplashScreenState extends State<SplashScreen> {
             gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [Colors.blueGrey[100], Colors.blueGrey[100],])
+                colors: [Colors.white, Colors.white54,])
         ),
         child: Center(
           child: Opacity(
@@ -103,7 +104,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     padding: EdgeInsets.symmetric(horizontal: 4.0),
                   ),
                   const Text(
-                    'CapMee',
+                    'Spidium',
                     style: TextStyle(
                       fontSize: 40.0,fontFamily: 'RalewayBold',
                       color: Colors.white,
@@ -113,8 +114,8 @@ class _SplashScreenState extends State<SplashScreen> {
                   )
                 ],
               ),
-              baseColor: Colors.blueGrey,
-              highlightColor: Colors.white,
+              baseColor: Colors.blueGrey[200],
+              highlightColor: Colors.black,
               loop: 3,
             ),
           ),

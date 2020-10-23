@@ -1,141 +1,111 @@
 import 'package:flutter/material.dart';
-import 'package:medium_app/Widget/stories.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:medium_app/NewsArticle.dart';
+import 'package:medium_app/NewsHelper.dart';
 import 'package:medium_app/data/data.dart';
 import 'package:medium_app/models/models.dart';
-
+import 'package:medium_app/Widget/stories.dart';
 class PostsList extends StatefulWidget {
   @override
   _PostsListState createState() => _PostsListState();
 }
 
 class _PostsListState extends State<PostsList> {
-  bool _enabled = true;
-
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        height: MediaQuery.of(context).size.height,
-        child: Container(
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              SizedBox(height: 10.0,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Trending Topics',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25.0,color: Colors.blueGrey,fontFamily: 'Raleway'),),
-                  Icon(Icons.arrow_forward,color: Colors.blueGrey,),
-                ],
-              ),
-              SizedBox(height: 20.0,),
-              Expanded(
-
-                child: Shimmer.fromColors(
-                  baseColor: Colors.grey[300],
-                  highlightColor: Colors.grey[100],
-                  enabled: _enabled,
-                  child: ListView.builder(
-                    itemBuilder: (_, __) => Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-
-                        children: [
-                          Container(
-                            width: 48.0,
-                            height: 48.0,
-                            color: Colors.white,
-                          ),
-                          const Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 8.0),
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  width: double.infinity,
-                                  height: 8.0,
-                                  color: Colors.white,
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 2.0),
-                                ),
-                                Container(
-                                  width: double.infinity,
-                                  height: 8.0,
-                                  color: Colors.white,
-                                ),
-                                const Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 2.0),
-                                ),
-                                Container(
-                                  width: 40.0,
-                                  height: 8.0,
-                                  color: Colors.white,
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
+    return Scaffold(
+       body: ListView.builder(
+          itemCount: NewsHelper.articleCount,
+          itemBuilder: (context, position) {
+            NewArticle article = NewsHelper.getArticle(position);
+            if(position == 2){
+              return Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Trending headlines',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25.0,color: Colors.blueGrey,fontFamily: 'Raleway'),),
+                        Icon(Icons.arrow_forward,color: Colors.blueGrey,),
+                      ],
                     ),
-                    itemCount: 4,
+                    SizedBox(height: 20.0,),
+                    Stories(currentUser: currentUser,stories: stories),
+
+
+                  ],
+                ),
+              );
+            }
+            return Padding(
+              padding: EdgeInsets.fromLTRB(0.0, 0.5, 0.0, 0.5),
+              child: Card(
+                child: Padding(
+                  padding: EdgeInsets.all(15.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 4.0,horizontal: 7.0),
+                        child: Text(
+                          article.categoryTitle,
+                          style: TextStyle(
+                              color: Colors.black38,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 12.0),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 12.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Flexible(
+                              flex: 1,
+                              child: Container(
+                                height: 80.0,
+                                width: 80.0,
+                                child: Image.asset(
+                                  "assets/" + article.imageAssetName,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            Flexible(
+                              child: Text(
+                                article.title,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15.0),
+                              ),
+                              flex: 3,
+                            ),
+
+                          ],
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                article.author,
+                                style: TextStyle(fontSize: 14.0),
+                              ),
+
+                            ],
+                          ),
+                          Icon(Icons.favorite_border)
+                        ],
+                      )
+                    ],
                   ),
                 ),
               ),
-              SizedBox(height: 10.0,),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('All Time Best',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25.0,color: Colors.blueGrey,fontFamily: 'Raleway'),),
-                  Icon(Icons.arrow_forward,color: Colors.blueGrey,),
-                ],
-              ),
-              SizedBox(height: 20.0,),
-              Stories(currentUser: currentUser,stories: stories),
-
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: FlatButton(
-                    onPressed: () {
-                      setState(() {
-                        _enabled = !_enabled;
-                      });
-                    },
-
-                ),
-              )
-            ],
-          ),
-
-          ),
-      ),
-    );
-  }
-
-
-  Widget _PostListsView(){
-    return ListView.builder(
-        itemCount: 0,
-        itemBuilder: (BuildContext context,int index)  {
-          return ListTile(
-            title: Text('This is the title'),
-            subtitle: Column(
-              children: [
-                Text('This is a Test'),
-                Icon(Icons.add)
-              ],
-            ),
-
-          );
-        }
-
-    );
+            );
+          },
+        ));
   }
 }
