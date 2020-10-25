@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:medium_app/TestOnboard.dart';
 import 'package:medium_app/pages/HomePage.dart';
 import 'package:medium_app/pages/TestShowCase.dart';
 import 'package:medium_app/pages/ShimmerTest.dart';
 import 'package:medium_app/pages/welcomePage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:medium_app/profiles/MainProfile.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:medium_app/blogs/addBlog.dart';
 
@@ -33,6 +35,11 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
+
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Medium App',
@@ -61,21 +68,43 @@ class _SplashScreenState extends State<SplashScreen> {
    checkLogin();
   }
   void checkLogin() async {
-//    var token  = storage.delete(key: "token");
-    var token  = storage.read(key: "token");
+    SharedPreferences preferences;
 
-    if (token != null) {
+    var token  = storage.delete(key: "token");
+   storage.delete(key: "token");
+    if (token == null) {
       setState(() {
         page = HomePage();
       });
     }
     else {
       setState(() {
-        page = WelcomePage();
+//        page = TestOnboard();
+        displayOnboarding() async {
+          preferences = await SharedPreferences.getInstance();
+          bool onboardingVisibilityStatus = preferences.getBool("showOnboarding");
+
+          if (onboardingVisibilityStatus == null) {
+            page =  TestOnboard();
+            preferences.setBool("showOnboarding", false);
+            return true;
+          }
+          else {
+            page =  WelcomePage();
+            return false;
+          }
+
+        }
+//        displayOnboarding().then((status) {
+//            page =  WelcomePage();
+//
+//        });
+      displayOnboarding();
       });
     }
   }
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(

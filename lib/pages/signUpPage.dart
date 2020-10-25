@@ -301,11 +301,11 @@ class _SignUpPageState extends State<SignUpPage> {
         height: height,
         child: Stack(
           children: <Widget>[
-//            Positioned(
-//              top: -MediaQuery.of(context).size.height * .15,
-//              right: -MediaQuery.of(context).size.width * .4,
-//              child: BezierContainer(),
-//            ),
+            Positioned(
+              top: -MediaQuery.of(context).size.height * .15,
+              right: -MediaQuery.of(context).size.width * .4,
+              child: BezierContainer(),
+            ),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: SingleChildScrollView(
