@@ -6,6 +6,7 @@ import 'package:medium_app/pages/HomePage.dart';
 import 'lognPage.dart';
 import '../Widget/bezierContainer.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import "package:flutter_feather_icons/flutter_feather_icons.dart";
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key key, this.title}) : super(key: key);
@@ -80,6 +81,7 @@ class _SignUpPageState extends State<SignUpPage> {
               obscureText: isPassword && vis,
               decoration: InputDecoration(
                 errorText: validate && title != 'Username' ? null : errorText,
+                  prefixIcon: title == 'Email id' ? Icon(FeatherIcons.mail) : title == 'Username' ? Icon(FeatherIcons.user) : Icon(FeatherIcons.lock),
                   suffixIcon: isPassword == true
                       ? IconButton(
                           icon: vis
@@ -99,7 +101,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.blueAccent),
                   ),
-                  hintText: title,
+
                   filled: true)
           )
         ],
@@ -177,7 +179,7 @@ class _SignUpPageState extends State<SignUpPage> {
         child: circular ? CircularProgressIndicator() : Text(
           'Register Now',
           style: TextStyle(
-              fontSize: 20, color: Colors.white, fontFamily: 'Raleway'),
+              fontSize: 20, color: Colors.white, fontFamily: 'Josefin Sans'),
         ),
       ),
     );
@@ -233,7 +235,7 @@ class _SignUpPageState extends State<SignUpPage> {
           children: <Widget>[
             Text(
               'Already have an account ?',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600,fontFamily: 'Josefin Sans'),
             ),
             SizedBox(
               width: 10,
@@ -255,27 +257,27 @@ class _SignUpPageState extends State<SignUpPage> {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-          text: 'Med',
+          text: 'Spi',
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.w700,
-            color: Colors.blueAccent,
-            fontFamily: 'RalewayBold',
+            color: Colors.blueGrey,
+            fontFamily: 'Josefin Sans',
           ),
           children: [
             TextSpan(
-              text: 'ium',
+              text: 'di',
               style: TextStyle(
-                  color: Colors.redAccent,
+                  color: Colors.blueGrey,
                   fontSize: 30,
-                  fontFamily: 'RalewayBold'),
+                  fontFamily: 'Josefin Sans'),
             ),
             TextSpan(
-              text: ' App',
+              text: 'um',
               style: TextStyle(
-                  color: Colors.blueAccent,
+                  color: Colors.blueGrey,
                   fontSize: 30,
-                  fontFamily: 'RalewayBold'),
+                  fontFamily: 'Josefin Sans'),
             ),
           ]),
     );

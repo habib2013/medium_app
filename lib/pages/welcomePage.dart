@@ -81,7 +81,7 @@ class _WelcomePageState extends State<WelcomePage>   with TickerProviderStateMix
               color: Colors.white),
           child: Text(
             'Login',
-            style: TextStyle(fontSize: 20, color: Colors.blueGrey,fontFamily: 'Raleway'),
+            style: TextStyle(fontSize: 20, color: Colors.blueGrey,fontFamily: 'Josefin Sans'),
           ),
         ),
       ),
@@ -106,7 +106,7 @@ class _WelcomePageState extends State<WelcomePage>   with TickerProviderStateMix
           ),
           child: Text(
             'Register now',
-            style: TextStyle(fontSize: 20, color: Colors.white,fontFamily: 'Raleway'),
+            style: TextStyle(fontSize: 20, color: Colors.white,fontFamily: 'Josefin Sans'),
           ),
         ),
       ),
@@ -120,7 +120,7 @@ class _WelcomePageState extends State<WelcomePage>   with TickerProviderStateMix
           children: <Widget>[
             Text(
               'Quick login with Touch ID',
-              style: TextStyle(color: Colors.white, fontSize: 17),
+              style: TextStyle(color: Colors.white, fontSize: 17,fontFamily: 'Josefin Sans'),
             ),
             SizedBox(
               height: 20,
@@ -134,6 +134,7 @@ class _WelcomePageState extends State<WelcomePage>   with TickerProviderStateMix
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 15,
+                fontFamily: 'Josefin Sans',
                 decoration: TextDecoration.underline,
               ),
             ),
@@ -145,22 +146,22 @@ class _WelcomePageState extends State<WelcomePage>   with TickerProviderStateMix
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-          text: 'Ca',
+          text: 'Spi',
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.w700,
             color: Colors.white,
-            fontFamily: 'RalewayBold',
+            fontFamily: 'Josefin Sans',
 
           ),
           children: [
             TextSpan(
-              text: 'pM',
-              style: TextStyle(color: Colors.white, fontSize: 30, fontFamily: 'RalewayBold'),
+              text: 'di',
+              style: TextStyle(color: Colors.white, fontSize: 30, fontFamily: 'Josefin Sans'),
             ),
             TextSpan(
-              text: 'ee',
-              style: TextStyle(color: Colors.white, fontSize: 30, fontFamily: 'RalewayBold'),
+              text: 'um',
+              style: TextStyle(color: Colors.white, fontSize: 30, fontFamily: 'Josefin Sans'),
             ),
           ]),
     );

@@ -6,7 +6,7 @@ import 'package:medium_app/pages/HomePage.dart';
 import 'signUpPage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 //import 'package:google_fonts/google_fonts.dart';
-
+import "package:flutter_feather_icons/flutter_feather_icons.dart";
 import '../Widget/bezierContainer.dart';
 
 class LoginPage extends StatefulWidget {
@@ -79,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
               controller: editController,
               decoration: InputDecoration(
                 errorText: validate ? null : errorText,
-                prefixIcon: Icon(Icons.mail_outline),
+                prefixIcon: isPassword != true ? Icon(FeatherIcons.user) : Icon(FeatherIcons.lock) ,
                   suffixIcon: isPassword == true
                       ? IconButton(
                           icon: vis
@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.blueAccent),
                   ),
-                  hintText: title,
+
                   filled: true))
         ],
       ),
@@ -158,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                 colors: [Colors.blueGrey[300], Colors.blueGrey[500],])),
         child:  circular ? CircularProgressIndicator() :  Text(
           'Login',
-          style: TextStyle(fontSize: 20, color: Colors.white,fontFamily: 'Raleway'),
+          style: TextStyle(fontSize: 20, color: Colors.white,fontFamily: 'Josefin Sans'),
         ),
       ),
     );
@@ -220,6 +220,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 25,
+                      fontFamily: 'Josefin Sans',
                       fontWeight: FontWeight.w400)),
             ),
           ),
@@ -237,6 +238,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
+                      fontFamily: 'Josefin Sans',
                       fontWeight: FontWeight.w400)),
             ),
           ),
@@ -261,7 +263,7 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             Text(
               'Don\'t have an account ?',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600,fontFamily: 'Josefin Sans'),
             ),
             SizedBox(
               width: 10,
@@ -283,25 +285,25 @@ class _LoginPageState extends State<LoginPage> {
     return RichText(
       textAlign: TextAlign.center,
       text: TextSpan(
-          text: 'Med',
+          text: 'Spi',
           style: TextStyle(
             fontSize: 30,
             fontWeight: FontWeight.w700,
-            color: Colors.blueAccent,
-            fontFamily: 'RalewayBold',
+            color: Colors.blueGrey,
+            fontFamily: 'Josefin Sans',
           ),
           children: [
             TextSpan(
-              text: 'ium',
+              text: 'di',
               style: TextStyle(
-                  color: Colors.redAccent, fontSize: 30, fontFamily: 'RalewayBold'),
+                  color: Colors.blueGrey, fontSize: 30, fontFamily: 'Josefin Sans'),
             ),
             TextSpan(
-              text: ' App',
+              text: 'um',
               style: TextStyle(
-                  color: Colors.blueAccent,
+                  color: Colors.blueGrey,
                   fontSize: 30,
-                  fontFamily: 'RalewayBold'),
+                  fontFamily: 'Josefin Sans'),
             ),
           ]),
 
@@ -350,7 +352,7 @@ class _LoginPageState extends State<LoginPage> {
                       alignment: Alignment.centerRight,
                       child: Text('Forgot Password ?',
                           style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w500)),
+                              fontSize: 14, fontWeight: FontWeight.w500,fontFamily: 'Josefin Sans')),
                     ),
                     _divider(),
                     _facebookButton(),

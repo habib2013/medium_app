@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:medium_app/NewsArticle.dart';
 import 'package:medium_app/NewsHelper.dart';
 import 'package:medium_app/data/data.dart';
@@ -25,7 +26,7 @@ class _PostsListState extends State<PostsList> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Trending headlines',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25.0,color: Colors.blueGrey,fontFamily: 'Raleway'),),
+                        Text('Trending headlines',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25.0,color: Colors.blueGrey,fontFamily: 'Josefin Sans'),),
                         Icon(Icons.arrow_forward,color: Colors.blueGrey,),
                       ],
                     ),
@@ -37,7 +38,8 @@ class _PostsListState extends State<PostsList> {
                 ),
               );
             }
-            return Padding(
+            return
+              Padding(
               padding: EdgeInsets.fromLTRB(0.0, 0.5, 0.0, 0.5),
               child: Card(
                 child: Padding(
@@ -52,6 +54,7 @@ class _PostsListState extends State<PostsList> {
                           style: TextStyle(
                               color: Colors.black38,
                               fontWeight: FontWeight.w500,
+
                               fontSize: 12.0),
                         ),
                       ),
@@ -76,6 +79,7 @@ class _PostsListState extends State<PostsList> {
                                 article.title,
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
+                                    fontFamily: 'Josefin Sans',
                                     fontSize: 15.0),
                               ),
                               flex: 3,
@@ -90,14 +94,26 @@ class _PostsListState extends State<PostsList> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text(
-                                article.author,
-                                style: TextStyle(fontSize: 14.0),
+                              Row(
+                                children: [
+                                  Icon(FeatherIcons.user),
+                                  Text(
+                                    article.author,
+                                    style: TextStyle(fontSize: 14.0,fontFamily: 'Josefin Sans'),
+                                  ),
+                                  SizedBox(width: 13,),
+                                  Icon(FeatherIcons.calendar,color: Colors.blueGrey,),
+                                  Text(
+                                    '12-Oct-20',
+                                    style: TextStyle(fontSize: 14.0),
+
+                                  ),
+                                ],
                               ),
 
                             ],
                           ),
-                          Icon(Icons.favorite_border)
+                          Icon(FeatherIcons.heart)
                         ],
                       )
                     ],

@@ -6,8 +6,7 @@ import 'package:medium_app/NetworkHandler.dart';
 import 'package:medium_app/customWidgets/OverlayCard.dart';
 import 'package:medium_app/pages/HomePage.dart';
 import 'package:multi_image_picker/multi_image_picker.dart';
-import 'package:dio/dio.dart';
-import 'package:http_parser/http_parser.dart';
+
 
 class AddBlog extends StatefulWidget {
   @override
@@ -25,6 +24,8 @@ class _AddBlogState extends State<AddBlog> {
   PickedFile _imageFile;
   final ImagePicker _picker = ImagePicker();
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +41,7 @@ class _AddBlogState extends State<AddBlog> {
         title: Text(
           'Add Blog',
           style: TextStyle(
-              fontFamily: 'Signatra', fontSize: 30.0, color: Colors.blueGrey),
+              fontFamily: 'Josefin Sans', fontSize: 30.0, color: Colors.blueGrey),
         ),
         centerTitle: true,
         actions: [
@@ -52,6 +53,7 @@ class _AddBlogState extends State<AddBlog> {
                       builder: ((builder) => OverlayCard(
                         imageFile: _imageFile,
                         title: _blogtitle.text,
+                        body: _blogBody.text,
                       )
                       )
                   );
@@ -63,7 +65,7 @@ class _AddBlogState extends State<AddBlog> {
                 style: TextStyle(
                     fontSize: 16.0,
                     color: Colors.blueGrey[400],
-                    fontFamily: 'Raleway',
+                    fontFamily: 'Josefin Sans',
                     fontWeight: FontWeight.bold),
               )),
         ],
@@ -117,6 +119,7 @@ class _AddBlogState extends State<AddBlog> {
               ? IconButton(
                   onPressed: () {
                     takeCoverPhoto(ImageSource.gallery);
+
                   },
                   icon: Icon(
                     Icons.image,
@@ -124,7 +127,7 @@ class _AddBlogState extends State<AddBlog> {
                   ),
                 )
               : null),
-      maxLength: title == 'Body' ? 400 : 50,
+      maxLength: title == 'Body' ? 400 : 60,
     );
   }
 
@@ -173,7 +176,7 @@ class _AddBlogState extends State<AddBlog> {
         child: Text(
           'Add Blog',
           style: TextStyle(
-              fontSize: 20, color: Colors.white, fontFamily: 'Raleway'),
+              fontSize: 20, color: Colors.white, fontFamily: 'Josefin Sans'),
         ),
       ),
     );
@@ -185,4 +188,6 @@ class _AddBlogState extends State<AddBlog> {
       _imageFile = pickedFile;
     });
   }
+
+
 }

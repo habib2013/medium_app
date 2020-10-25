@@ -106,7 +106,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   const Text(
                     'Spidium',
                     style: TextStyle(
-                      fontSize: 40.0,fontFamily: 'RalewayBold',
+                      fontSize: 40.0,fontFamily: 'Josefin Sans',
                       color: Colors.white,
                       letterSpacing: 1,
                       fontWeight: FontWeight.bold,

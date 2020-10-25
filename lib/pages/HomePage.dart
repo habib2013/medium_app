@@ -11,7 +11,7 @@ import 'package:showcaseview/showcaseview.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:medium_app/NetworkHandler.dart';
-
+import "package:flutter_feather_icons/flutter_feather_icons.dart";
 
 class HomePage extends StatelessWidget {
 
@@ -75,7 +75,7 @@ class _NewHomePageState extends State<NewHomePage> {
               backgroundImage: NetworkHandler().getImage(output['username']),
             ),
             SizedBox(height: 4.0,),
-            Text(output['username']),
+            Text(output['username'],style: TextStyle(fontFamily: 'Josefin Sans'),),
             ]
           );
         });
@@ -159,36 +159,36 @@ class _NewHomePageState extends State<NewHomePage> {
             ),
 
             ListTile(
-              title: Text('All Posts',style: TextStyle(fontFamily: 'Raleway',color: Colors.black),),
-              trailing: Icon(Icons.launch),
+              title: Text('All Posts',style: TextStyle(fontFamily: 'Josefin Sans',color: Colors.black),),
+              trailing: Icon(FeatherIcons.compass),
               onTap: (){
 
               },
             ),
             ListTile(
-              title: Text('New Story',style: TextStyle(fontFamily: 'Raleway',color: Colors.black),),
-              trailing: Icon(Icons.edit),
+              title: Text('New Story',style: TextStyle(fontFamily: 'Josefin Sans',color: Colors.black),),
+              trailing: Icon(FeatherIcons.edit),
               onTap: (){
 
               },
             ),
             ListTile(
-              title: Text('Settings',style: TextStyle(fontFamily: 'Raleway',color: Colors.black),),
-              trailing: Icon(Icons.settings),
+              title: Text('Settings',style: TextStyle(fontFamily: 'Josefin Sans',color: Colors.black),),
+              trailing: Icon(FeatherIcons.settings),
               onTap: (){
 
               },
             ),
             ListTile(
-              title: Text('Feedbacks',style: TextStyle(fontFamily: 'Raleway',color: Colors.black),),
-              trailing: Icon(Icons.feedback),
+              title: Text('Feedbacks',style: TextStyle(fontFamily: 'Josefin Sans',color: Colors.black),),
+              trailing: Icon(FeatherIcons.mic),
               onTap: (){
 
               },
             ),
             ListTile(
-              title: Text('Logout',style: TextStyle(fontFamily: 'Raleway',color: Colors.black),),
-              trailing: Icon(Icons.power_settings_new),
+              title: Text('Logout',style: TextStyle(fontFamily: 'Josefin Sans',color: Colors.black),),
+              trailing: Icon(FeatherIcons.logOut),
               onTap: (){
                 logout();
               },
@@ -200,7 +200,7 @@ class _NewHomePageState extends State<NewHomePage> {
         backgroundColor: Colors.white,
         title: Text(
           titleString[currentState],
-          style: TextStyle(fontFamily: 'Raleway', color: Colors.blueGrey),
+          style: TextStyle(fontFamily: 'Josefin Sans', color: Colors.blueGrey),
         ),
         centerTitle: false,
         iconTheme: new IconThemeData(color: Colors.blueGrey),
@@ -212,7 +212,7 @@ class _NewHomePageState extends State<NewHomePage> {
               description: 'Your Notification shows here',
               shapeBorder: CircleBorder(),
               child: Icon(
-                Icons.notifications_none,
+                FeatherIcons.bell,
                 color: Colors.blueGrey,
               ),
             ),
@@ -226,7 +226,7 @@ class _NewHomePageState extends State<NewHomePage> {
               showcaseBackgroundColor: Colors.blueAccent,
               textColor: Colors.white,
               child: Icon(
-                Icons.search,
+                FeatherIcons.search,
                 color: Colors.blueGrey,
               ),
             ),
@@ -241,14 +241,14 @@ class _NewHomePageState extends State<NewHomePage> {
         description: 'Click here to Start',
         shapeBorder: CircleBorder(),
         child: FloatingActionButton(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.blueGrey,
           onPressed: () {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => AddBlog()));
           },
           child: Icon(
-            Icons.edit,
-            color: Colors.blueGrey,
+            FeatherIcons.edit,
+            color: Colors.white,
           ),
         ),
       ),
@@ -264,7 +264,7 @@ class _NewHomePageState extends State<NewHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: Icon(Icons.home),
+                  icon: Icon(FeatherIcons.home),
                   color: currentState == 0
                       ? Colors.blueGrey
                       : Colors.blueGrey[300],
@@ -281,7 +281,7 @@ class _NewHomePageState extends State<NewHomePage> {
                     title: 'Notifications',
                     description: 'Your Notification shows here',
                     shapeBorder: CircleBorder(),
-                    child: Icon(Icons.person),
+                    child: Icon(FeatherIcons.user),
                   ),
                   color: currentState == 1
                       ? Colors.blueGrey
