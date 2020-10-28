@@ -69,10 +69,9 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   void checkLogin() async {
     SharedPreferences preferences;
+    var token  = storage.read(key: "token");
 
-    var token  = storage.delete(key: "token");
-   storage.delete(key: "token");
-    if (token == null) {
+    if (token != null) {
       setState(() {
         page = HomePage();
       });

@@ -56,4 +56,9 @@ class NetworkHandler{
     return NetworkImage(url);
 
   }
+//  NetworkImage getBlogImage(String username){
+//    String url = formatter("");
+//    return NetworkImage(url);
+//
+//  }
 }

@@ -141,13 +141,31 @@ class _AddBlogState extends State<AddBlog> {
           Map<String, String> data = {
             "title": _blogtitle.text,
             "body": _blogBody.text,
+
           };
           var response = await networkHandler.post("blogPost/Add", data);
           if (response.statusCode == 200 || response.statusCode == 201) {
-            Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => HomePage()),
-                (route) => false);
+            if (_imageFile != null) {
+              var imgResponse = await networkHandler.patchImage('blogPost/add/coverImage', _imageFile.path);
+              if (imgResponse.statusCode == 200 || imgResponse.statusCode == 201) {
+                setState(() {
+                  circular = false;
+                });
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
+              }
+            }  else {
+              setState(() {
+                circular = false;
+              });
+              //Next One shouldnt go anywhere but show an erroor message
+              Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => HomePage()), (route) => false);
+            }
+
+
+//            Navigator.pushAndRemoveUntil(
+//                context,
+//                MaterialPageRoute(builder: (context) => HomePage()),
+//                (route) => false);
           }
           print(data);
           print(response.statusCode);

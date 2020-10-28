@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:medium_app/Widget/bezierContainer.dart';
 import 'package:medium_app/blogs/addBlog.dart';
 import 'package:medium_app/models/profileModel.dart';
 import 'package:medium_app/pages/welcomePage.dart';
@@ -124,7 +125,7 @@ class _NewHomePageState extends State<NewHomePage> {
   @override
   Widget build(BuildContext context) {
     SharedPreferences preferences;
-
+    final height = MediaQuery.of(context).size.height;
     displayShowCase() async {
       preferences = await SharedPreferences.getInstance();
       bool showCaseVisibilityStatus = preferences.getBool("displayShowCase");
@@ -160,39 +161,40 @@ class _NewHomePageState extends State<NewHomePage> {
 
             ListTile(
               title: Text('All Posts',style: TextStyle(fontFamily: 'Josefin Sans',color: Colors.black),),
-              trailing: Icon(FeatherIcons.compass),
+              leading: Icon(FeatherIcons.compass),
               onTap: (){
 
               },
             ),
             ListTile(
               title: Text('New Story',style: TextStyle(fontFamily: 'Josefin Sans',color: Colors.black),),
-              trailing: Icon(FeatherIcons.edit),
+              leading: Icon(FeatherIcons.edit),
               onTap: (){
 
               },
             ),
             ListTile(
               title: Text('Settings',style: TextStyle(fontFamily: 'Josefin Sans',color: Colors.black),),
-              trailing: Icon(FeatherIcons.settings),
+              leading: Icon(FeatherIcons.settings),
               onTap: (){
 
               },
             ),
             ListTile(
               title: Text('Feedbacks',style: TextStyle(fontFamily: 'Josefin Sans',color: Colors.black),),
-              trailing: Icon(FeatherIcons.mic),
+              leading: Icon(FeatherIcons.mic),
               onTap: (){
 
               },
             ),
             ListTile(
               title: Text('Logout',style: TextStyle(fontFamily: 'Josefin Sans',color: Colors.black),),
-              trailing: Icon(FeatherIcons.logOut),
+              leading: Icon(FeatherIcons.logOut),
               onTap: (){
                 logout();
               },
             ),
+
           ],
         ),
       ),

@@ -85,7 +85,7 @@ class _MainProfileState extends State<MainProfile> {
             profileModel.name ?? "",
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                fontFamily: 'Raleway',
+                fontFamily: 'Josefin Sans',
                 fontSize: 19),
           ),
           SizedBox(height: 5.0),
