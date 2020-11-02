@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -145,8 +146,13 @@ class _AddBlogState extends State<AddBlog> {
           };
           var response = await networkHandler.post("blogPost/Add", data);
           if (response.statusCode == 200 || response.statusCode == 201) {
+//            print(response.body.)
+            Map<String, dynamic> map = json.decode(response.body);
+            print(map["data"]);
+            String postId = map["data"]["_id"];
+            print(postId);
             if (_imageFile != null) {
-              var imgResponse = await networkHandler.patchImage('blogPost/add/coverImage', _imageFile.path);
+              var imgResponse = await networkHandler.patchImage('blogPost/add/coverImage/${postId}', _imageFile.path);
               if (imgResponse.statusCode == 200 || imgResponse.statusCode == 201) {
                 setState(() {
                   circular = false;

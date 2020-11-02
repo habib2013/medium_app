@@ -7,8 +7,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class NetworkHandler{
 //  String baseUrl = 'http://192.168.43.72:5003/';
-  String baseUrl = 'http://192.168.137.1:5003/';
-//  String baseUrl = 'https://hidden-dusk-12670.herokuapp.com/';
+//  String baseUrl = 'http://192.168.137.1:5003/';
+  String baseUrl = 'https://hidden-dusk-12670.herokuapp.com/';
 
   final storage = new FlutterSecureStorage();
 

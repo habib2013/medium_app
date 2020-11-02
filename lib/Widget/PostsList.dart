@@ -93,7 +93,11 @@ class _PostsListState extends State<PostsList> {
       showBlogLists = ListView.builder(
         itemCount: myblogData.length,
         itemBuilder: (context, position) {
-
+            String realcoverImage = myblogData[position]["coverImage"];
+            print(position);
+            print(realcoverImage);
+            String cutUploadAway = realcoverImage.substring(8);
+            print(cutUploadAway);
           if (position == 2) {
             return Padding(
               padding: EdgeInsets.all(16.0),
@@ -154,7 +158,7 @@ class _PostsListState extends State<PostsList> {
                               height: 80.0,
                               width: 80.0,
                               child: Image.network(
-                                'http://192.168.137.1:5003/uploads/'+ myblogData[position]["username"] + ".jpg",
+                              'https://hidden-dusk-12670.herokuapp.com/uploads/'+ cutUploadAway,
                                 fit: BoxFit.cover,
                               ),
                             ),
