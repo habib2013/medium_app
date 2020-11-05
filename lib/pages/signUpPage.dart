@@ -7,6 +7,7 @@ import 'lognPage.dart';
 import '../Widget/bezierContainer.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import "package:flutter_feather_icons/flutter_feather_icons.dart";
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key key, this.title}) : super(key: key);
@@ -21,6 +22,7 @@ class _SignUpPageState extends State<SignUpPage> {
   bool vis = true;
   final _globalKey = GlobalKey<FormState>();
   NetworkHandler networkHandler = NetworkHandler();
+  SharedPreferences preferences;
 
   TextEditingController _usernameEditingController = TextEditingController();
   TextEditingController _emailEditingController = TextEditingController();
@@ -137,6 +139,7 @@ class _SignUpPageState extends State<SignUpPage> {
            if (response.statusCode == 200 || response.statusCode == 201 ) {
              Map<String,dynamic> output = json.decode(response.body);
              print(output['token']);
+
              await storage.write(key: "token", value: output['token']);
              setState(() {
                validate = true;

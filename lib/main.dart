@@ -35,14 +35,9 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-
-
-
-
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Medium App',
+      title: 'Spidium',
       theme: ThemeData(
         primaryColor: Colors.blueGrey,
         primaryColorLight: Colors.blue
@@ -64,28 +59,29 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState(){
     super.initState();
+    checkLogin();
     Timer(Duration(seconds: 3), () => Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => page)));
-   checkLogin();
+
   }
   void checkLogin() async {
     SharedPreferences preferences;
     var token  = storage.read(key: "token");
-
+//    String token = await preferences.get("token");
     if (token != null) {
       setState(() {
         page = HomePage();
       });
     }
     else {
+//      page =  WelcomePage();
       setState(() {
 //        page = TestOnboard();
         displayOnboarding() async {
           preferences = await SharedPreferences.getInstance();
-          bool onboardingVisibilityStatus = preferences.getBool("showOnboarding");
-
-          if (onboardingVisibilityStatus == null) {
+          bool onboardingVisibilityStats = preferences.getBool("showOnboardingPageTest");
+          if (onboardingVisibilityStats == null) {
             page =  TestOnboard();
-            preferences.setBool("showOnboarding", false);
+            preferences.setBool("showOnboardingPageTest", false);
             return true;
           }
           else {

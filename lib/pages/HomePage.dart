@@ -14,6 +14,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:medium_app/NetworkHandler.dart';
 import "package:flutter_feather_icons/flutter_feather_icons.dart";
 
+
 class HomePage extends StatelessWidget {
 
   @override
@@ -305,7 +306,7 @@ class _NewHomePageState extends State<NewHomePage> {
   }
 
   void logout() async{
-    await storage.delete(key: "token");
+    await storage.deleteAll();
     Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => WelcomePage()), (route) => false);
   }
 
