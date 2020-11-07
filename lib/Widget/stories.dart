@@ -52,53 +52,56 @@ class _StoryCard extends StatelessWidget {
       children: [
 
         ClipRRect(
-          borderRadius: BorderRadius.circular(12.0),
+            borderRadius: BorderRadius.circular(12.0),
             child: CachedNetworkImage(
-          imageUrl: isAddStory ? currentUser.imageUrl : story.imageUrl,
-          height: double.infinity,
-          width: 110.0,
-          fit: BoxFit.cover,
-        )
+              imageUrl: isAddStory ? currentUser.imageUrl : story.imageUrl,
+              height: double.infinity,
+              width: 110.0,
+              fit: BoxFit.cover,
+            )
 
         ),
         Container(
           height: double.infinity,
           width: 110.0,
           decoration: BoxDecoration(
-              gradient: Palette.storyGradient,
-              borderRadius: BorderRadius.circular(12.0),
+            gradient: Palette.storyGradient,
+            borderRadius: BorderRadius.circular(12.0),
 
           ),
         ),
         Positioned(
-           top: 8.0,
-            left: 8.0,
-            child: isAddStory ? Container(
-              height: 40.0,
-              width: 40.0,
-              decoration: BoxDecoration(color: Colors.white,shape: BoxShape.circle),
-              child: IconButton(
-                padding:EdgeInsets.zero,
-                icon: Icon(Icons.add),
-                iconSize: 30.0,
-                color: Palette.facebookBlue,
-                onPressed: () => print('Hello'),
-              ),
-        ): ProfileAvatar(imageUrl: story.user.imageUrl,hasBorder: !story.isViewed,),
-        ),
-       Positioned(
-         bottom: 8.0,
-         left: 8.0,
-         right: 8.0,
-         child: Text(isAddStory ? 'Add Story' : story.user.name,
-            style:const TextStyle(
-              color: Colors.white,fontWeight: FontWeight.bold
+          top: 8.0,
+          left: 8.0,
+          child: isAddStory ? Container(
+            height: 40.0,
+            width: 40.0,
+            decoration: BoxDecoration(color: Colors.white,shape: BoxShape.circle),
+            child: IconButton(
+              padding:EdgeInsets.zero,
+              icon: Icon(Icons.add),
+              iconSize: 30.0,
+              color: Palette.facebookBlue,
+              onPressed: () => print('Hello'),
             ),
-           maxLines: 2,
-           overflow: TextOverflow.ellipsis,
-         ),
-       )
+          ): ProfileAvatar(imageUrl: story.user.imageUrl,hasBorder: !story.isViewed,),
+        ),
+        Positioned(
+          bottom: 8.0,
+          left: 8.0,
+          right: 8.0,
+          child: Text(isAddStory ? 'Add Story' : story.user.name,
+            style:const TextStyle(
+                color: Colors.white,fontWeight: FontWeight.bold
+            ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+        )
       ],
     );
+
+
+
   }
 }

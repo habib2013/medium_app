@@ -71,7 +71,7 @@ class OverlayCard extends StatelessWidget {
                             title,
                             style: TextStyle(
                                 fontWeight: FontWeight.w400,
-                                fontFamily: 'Josefin Sans',
+                                fontFamily: 'Product Sans',
                                 fontSize: 15.0),
                           ),
                           flex: 3,

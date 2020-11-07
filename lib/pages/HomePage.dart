@@ -201,11 +201,13 @@ class _NewHomePageState extends State<NewHomePage> {
       ),
       appBar: AppBar(
         backgroundColor: Colors.white,
+        elevation: 0,
         title: Text(
           titleString[currentState],
           style: TextStyle(fontFamily: 'Josefin Sans', color: Colors.blueGrey),
         ),
         centerTitle: false,
+
         iconTheme: new IconThemeData(color: Colors.blueGrey),
         actions: [
           IconButton(
@@ -250,7 +252,7 @@ class _NewHomePageState extends State<NewHomePage> {
                 context, MaterialPageRoute(builder: (context) => AddBlog()));
           },
           child: Icon(
-            FeatherIcons.edit,
+           Icons.edit,
             color: Colors.white,
           ),
         ),

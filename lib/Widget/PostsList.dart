@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:medium_app/NewsArticle.dart';
 import 'package:medium_app/NewsHelper.dart';
+import 'package:medium_app/blogs/showSingle.dart';
 import 'package:medium_app/data/data.dart';
 import 'package:medium_app/models/models.dart';
 import 'package:medium_app/Widget/stories.dart';
@@ -76,23 +77,54 @@ class _PostsListState extends State<PostsList> {
     ),
   );
 
+
   void fetchPostsList() async {
     var response = await networkHandler.get('blogPost/getOwnBlog');
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       Map<String, dynamic> map = json.decode(response.body);
       List<dynamic> myblogData = map["data"];
+
 //      print(myblogData[0]["title"]);
       setState(() {
         showBlogLists = ListView.builder(
           itemCount: myblogData.length,
           itemBuilder: (context, position) {
             String realcoverImage = myblogData[position]["coverImage"];
-            print(position);
+              if (position == 0) {
+                return Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+
+                    child: Column(
+
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Hello 🌱',style: TextStyle(fontFamily: 'Josefin Sans',fontSize: 22,color: Colors.blueGrey),),
+                          SizedBox(height: 15,),
+                        Row(
+                          children: [
+                            Text(myblogData[position]["username"] + ",",style: TextStyle(fontFamily: 'Josefin Sans',fontSize: 40,color: Colors.black,fontWeight: FontWeight.bold),),
+                          ],
+                        )
+                        ,SizedBox(height: 10,),
+//                        Text('Your Daily Read',style: TextStyle(fontFamily: 'Product Sans',fontSize: 18,color: Colors.black),),
+//
+                      ],
+                    ),
+
+                  ),
+                );
+
+              }
+
             print(realcoverImage);
             String cutUploadAway = realcoverImage.substring(8);
             print(cutUploadAway);
-            if (position == 2) {
+            if (position == 1) {
               return Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Column(
@@ -101,10 +133,10 @@ class _PostsListState extends State<PostsList> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Trending headlines',
+                          'Trending tech headlines',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 25.0,
+                              fontSize: 21.0,
                               color: Colors.blueGrey,
                               fontFamily: 'Josefin Sans'),
                         ),
@@ -122,94 +154,101 @@ class _PostsListState extends State<PostsList> {
                 ),
               );
             }
-            return Padding(
-              padding: EdgeInsets.fromLTRB(0.0, 0.5, 0.0, 0.5),
-              child: Card(
-                child: Padding(
-                  padding: EdgeInsets.all(15.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 4.0, horizontal: 7.0),
-                        child: Text(
-                          'categoryTitle',
-                          style: TextStyle(
-                              color: Colors.black38,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 12.0),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 12.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+
+            return Column(
+              children: [
+                InkWell(
+                  onTap: (){
+                  String blogPostId = myblogData[position]["_id"] ;
+
+                   Navigator.push(context, MaterialPageRoute(builder: (context) => ShowSingle(blogId: blogPostId)));
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0.0, 0.5, 0.0, 0.5),
+                    child: Card(
+                      elevation: 0,
+                      child: Padding(
+                        padding: EdgeInsets.all(15.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Flexible(
-                              flex: 1,
-                              child: Container(
-                                height: 80.0,
-                                width: 80.0,
-                                child: Image.network(
-                                  'http://192.168.137.1:5003/uploads/' +
-                                      cutUploadAway,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            Flexible(
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 4.0, horizontal: 7.0),
                               child: Text(
-                                myblogData[position]["title"] ?? 'Nothing',
+                                'categoryTitle',
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'Josefin Sans',
-                                    fontSize: 15.0),
+                                    color: Colors.black38,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 12.0),
                               ),
-                              flex: 3,
                             ),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Row(
-                                children: [
-                                  Icon(FeatherIcons.user),
-                                  Text(
-                                    myblogData[position]["username"] ??
-                                        'Nothing',
-                                    style: TextStyle(
-                                        fontSize: 14.0,
-                                        fontFamily: 'Josefin Sans'),
+                            Padding(
+                              padding: EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 12.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  Flexible(
+                                    flex: 1,
+                                    child: Container(
+                                      height: 80.0,
+                                      width: 80.0,
+                                      child: Image.network(
+                                        'http://192.168.137.1:5003/uploads/' +
+                                            cutUploadAway,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
                                   ),
-                                  SizedBox(
-                                    width: 13,
-                                  ),
-                                  Icon(
-                                    FeatherIcons.calendar,
-                                    color: Colors.blueGrey,
-                                  ),
-                                  Text(
-                                    '12-Oct-20',
-                                    style: TextStyle(fontSize: 14.0),
+                                  Flexible(
+                                    child: Text(
+                                      myblogData[position]["title"] ?? 'Nothing',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontFamily: 'Product Sans',
+                                          fontSize: 18.0),
+                                    ),
+                                    flex: 3,
                                   ),
                                 ],
                               ),
-                            ],
-                          ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Row(
+                                      children: [
+                                        Icon(FeatherIcons.user),
+                                        Text(
+                                          myblogData[position]["username"] ??
+                                              'Nothing',
+                                          style: TextStyle(
+                                              fontSize: 14.0,
+                                              fontFamily: 'Josefin Sans'),
+                                        ),
+                                        SizedBox(
+                                          width: 13,
+                                        ),
+
+                                      ],
+                                    ),
+                                  ],
+                                ),
 //                        Icon(FeatherIcons.heart)
-                       
-                        ],
-                      )
-                    ],
+
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
             );
           },
         );
