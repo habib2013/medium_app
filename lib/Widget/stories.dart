@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:medium_app/blogs/apiSinglePage.dart';
 import 'package:medium_app/config/palette.dart';
 import 'package:medium_app/models/models.dart';
 import 'package:medium_app/Widget/profile_avatar.dart';
@@ -48,57 +49,47 @@ class _StoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
+    return InkWell(
+      onTap: (){
+       Navigator.push(context, MaterialPageRoute(builder: (context) => ApiSinglePage(blogId: '32332323223',)));
+      },
+      child: Stack(
+        children: [
 
-        ClipRRect(
-            borderRadius: BorderRadius.circular(12.0),
-            child: CachedNetworkImage(
-              imageUrl: isAddStory ? currentUser.imageUrl : story.imageUrl,
-              height: double.infinity,
-              width: 110.0,
-              fit: BoxFit.cover,
-            )
-
-        ),
-        Container(
-          height: double.infinity,
-          width: 110.0,
-          decoration: BoxDecoration(
-            gradient: Palette.storyGradient,
-            borderRadius: BorderRadius.circular(12.0),
+          ClipRRect(
+              borderRadius: BorderRadius.circular(12.0),
+              child: CachedNetworkImage(
+                imageUrl: isAddStory ? currentUser.imageUrl : story.imageUrl,
+                height: double.infinity,
+                width: 110.0,
+                fit: BoxFit.cover,
+              )
 
           ),
-        ),
-        Positioned(
-          top: 8.0,
-          left: 8.0,
-          child: isAddStory ? Container(
-            height: 40.0,
-            width: 40.0,
-            decoration: BoxDecoration(color: Colors.white,shape: BoxShape.circle),
-            child: IconButton(
-              padding:EdgeInsets.zero,
-              icon: Icon(Icons.add),
-              iconSize: 30.0,
-              color: Palette.facebookBlue,
-              onPressed: () => print('Hello'),
+          Container(
+            height: double.infinity,
+            width: 110.0,
+            decoration: BoxDecoration(
+              gradient: Palette.storyGradient,
+              borderRadius: BorderRadius.circular(12.0),
+
             ),
-          ): ProfileAvatar(imageUrl: story.user.imageUrl,hasBorder: !story.isViewed,),
-        ),
-        Positioned(
-          bottom: 8.0,
-          left: 8.0,
-          right: 8.0,
-          child: Text(isAddStory ? 'Add Story' : story.user.name,
-            style:const TextStyle(
-                color: Colors.white,fontWeight: FontWeight.bold
-            ),
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
           ),
-        )
-      ],
+
+          Positioned(
+            bottom: 8.0,
+            left: 8.0,
+            right: 8.0,
+            child: Text('This is the first post by me and the fdjkdfjkd',
+              style:const TextStyle(
+                  color: Colors.white,fontWeight: FontWeight.bold,fontFamily: 'Josefin Sans'
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          )
+        ],
+      ),
     );
 
 

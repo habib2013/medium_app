@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:medium_app/NetworkHandler.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ShowSingle extends StatefulWidget {
   final String blogId;
@@ -21,6 +23,108 @@ class _ShowSingleState extends State<ShowSingle> {
       getBlogDetails();
     super.initState();
   }
+
+  Widget showSingleBlogLists = Container(
+    child: Shimmer.fromColors(
+      baseColor: Colors.grey[300],
+      highlightColor: Colors.grey[100],
+      enabled: true,
+      child: ListView.builder(
+        itemBuilder: (_, __) => Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: Column(
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 30),
+//              Container(
+//                width: 48.0,
+//                height: 48.0,
+//                color: Colors.white,
+//              ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          width: double.infinity,
+                          height: 8.0,
+                          color: Colors.white,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 2.0),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: 8.0,
+                          color: Colors.white,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 2.0),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: 8.0,
+                          color: Colors.white,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: 8.0,
+                          color: Colors.white,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 2.0),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 2.0),
+                        ),
+                        Container(
+                          width: 40.0,
+                          height: 8.0,
+                          color: Colors.white,
+                        ),
+
+
+                      ],
+                    ),
+                  ),
+
+                ],
+              ),
+                            SizedBox(height: 40,),
+                            Container(
+                width: 370.0,
+                height: 250.0,
+                color: Colors.white,
+              ),
+
+            ],
+          ),
+        ),
+        itemCount: 1,
+      ),
+    ),
+  );
+
+  Widget showAnoda = Container(
+    child: SingleChildScrollView(
+      padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+      child: Column(
+        children: [
+          Text('New york won\'t return to normal life soon, though it has reduced 42% of it\'s air pollution',style: TextStyle(fontFamily: 'Josefin Sans',color: Colors.black,fontSize: 30,),),
+          SizedBox(height: 10,),
+          Image.asset('assets/cars.jpg'),
+          SizedBox(height: 20,),
+          Text('New york won\'t return to normal life soon, though it has reduced 42% of it\'s air pollution,New york won\'t return to normal life soon, though it has reduced 42% of it\'s air pollution',style: TextStyle(fontFamily: 'Product Sans',color: Colors.black,fontSize: 18,),),
+        ],
+      ),
+    ),
+  );
+
     void getBlogDetails() async{
       String blogId = widget.blogId;
      var response = await networkHandler.get('blogPost/'+ blogId);
@@ -29,6 +133,8 @@ class _ShowSingleState extends State<ShowSingle> {
         Map<String, dynamic> map = json.decode(response.body);
         Map<String,dynamic> myblogData = map["data"];
         print(myblogData);
+
+
       }
     }
 
@@ -36,12 +142,53 @@ class _ShowSingleState extends State<ShowSingle> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
-      ),
-      body: Container(
-        child: Center(
-          child: Text(widget.blogId ?? 'Nothing'),
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(FeatherIcons.arrowLeftCircle, size: 30.0, color: Colors.blueGrey),
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
+        elevation: 0,
+
+        centerTitle: true,
+        actions: [
+          FlatButton(
+              onPressed: () {
+
+              },
+              child: Icon(FeatherIcons.share2)
+          ),
+        ],
+      ),
+      body: showSingleBlogLists,
+
+      bottomNavigationBar: BottomAppBar(
+        child: Card(
+          elevation: 1,
+          shadowColor: Colors.grey,
+          child: Container(
+            height: 50,
+            padding: EdgeInsets.symmetric(horizontal: 15),
+            margin: EdgeInsets.symmetric(horizontal: 5),
+            child: Row(
+              children: [
+                Icon(FeatherIcons.thumbsUp),
+                SizedBox(width: 20,),
+                Icon(FeatherIcons.thumbsDown),
+                Expanded(
+
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        IconButton(icon: Icon(FeatherIcons.messageSquare,color: Colors.black,), onPressed: null,),
+                      ],
+                    ))
+              ],
+            ),
+          ),
+        ),
+        color: Colors.white,
       ),
     );
   }

@@ -195,7 +195,7 @@ class _PostsListState extends State<PostsList> {
                                       height: 80.0,
                                       width: 80.0,
                                       child: Image.network(
-                                        'http://192.168.137.1:5003/uploads/' +
+                                        'https://hidden-dusk-12670.herokuapp.com/uploads/' +
                                             cutUploadAway,
                                         fit: BoxFit.cover,
                                       ),

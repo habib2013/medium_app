@@ -252,7 +252,7 @@ class _NewHomePageState extends State<NewHomePage> {
                 context, MaterialPageRoute(builder: (context) => AddBlog()));
           },
           child: Icon(
-           Icons.edit,
+           FeatherIcons.edit2,
             color: Colors.white,
           ),
         ),
@@ -269,7 +269,7 @@ class _NewHomePageState extends State<NewHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: Icon(FeatherIcons.home),
+                  icon: Icon(FeatherIcons.barChart2),
                   color: currentState == 0
                       ? Colors.blueGrey
                       : Colors.blueGrey[300],
