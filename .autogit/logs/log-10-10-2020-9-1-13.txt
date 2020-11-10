@@ -1,0 +1,23 @@
+-------------------- Auto-Git Log --------------------
+		Tue Nov 10 2020 09:01:13 GMT+0100 (West Africa Standard Time)
+------------------------------------------------------
+
+Modified files:
+* android/app/build.gradle
+* android/app/src/main/AndroidManifest.xml
+* lib/NetworkHandler.dart
+* lib/Widget/PostsList.dart
+* lib/Widget/stories.dart
+* lib/blogs/showSingle.dart
+* lib/pages/HomePage.dart
+
+
+Created files:
+* .autogit/autogit.json
+* lib/blogs/apiSinglePage.dart
+
+
+Deleted files:
+
+
+Renamed files:
