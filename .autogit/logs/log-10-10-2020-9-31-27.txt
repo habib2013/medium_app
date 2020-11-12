@@ -1,0 +1,17 @@
+-------------------- Auto-Git Log --------------------
+		Tue Nov 10 2020 09:31:27 GMT+0100 (West Africa Standard Time)
+------------------------------------------------------
+
+Modified files:
+* android/app/build.gradle
+
+
+Created files:
+* .autogit/logs/log-10-10-2020-9-1-13.txt
+* android/key.jks
+
+
+Deleted files:
+
+
+Renamed files:

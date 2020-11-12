@@ -65,8 +65,10 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   void checkLogin() async {
     SharedPreferences preferences;
-    var token  = storage.read(key: "token");
+    var token  = await storage.read(key: "token");
+    print('token is ${token}');
 //    String token = await preferences.get("token");
+
     if (token != null) {
       setState(() {
         page = HomePage();
@@ -78,10 +80,10 @@ class _SplashScreenState extends State<SplashScreen> {
 //        page = TestOnboard();
         displayOnboarding() async {
           preferences = await SharedPreferences.getInstance();
-          bool onboardingVisibilityStats = preferences.getBool("showOnboardingPageTest");
+          bool onboardingVisibilityStats = preferences.getBool("showOnboardingPageTesting");
           if (onboardingVisibilityStats == null) {
             page =  TestOnboard();
-            preferences.setBool("showOnboardingPageTest", false);
+            preferences.setBool("showOnboardingPageTesting", false);
             return true;
           }
           else {

@@ -7,20 +7,20 @@ import 'package:shimmer/shimmer.dart';
 
 class ShowSingle extends StatefulWidget {
   final String blogId;
-  ShowSingle({ Key key, this.blogId }): super(key: key);
+
+  ShowSingle({Key key, this.blogId}) : super(key: key);
+
   @override
   _ShowSingleState createState() => _ShowSingleState();
-
-
 }
 
 class _ShowSingleState extends State<ShowSingle> {
   NetworkHandler networkHandler = NetworkHandler();
 
-    @override
+  @override
   void initState() {
     // TODO: implement initState
-      getBlogDetails();
+    getBlogDetails();
     super.initState();
   }
 
@@ -87,21 +87,19 @@ class _ShowSingleState extends State<ShowSingle> {
                           height: 8.0,
                           color: Colors.white,
                         ),
-
-
                       ],
                     ),
                   ),
-
                 ],
               ),
-                            SizedBox(height: 40,),
-                            Container(
+              SizedBox(
+                height: 40,
+              ),
+              Container(
                 width: 370.0,
                 height: 250.0,
                 color: Colors.white,
               ),
-
             ],
           ),
         ),
@@ -112,31 +110,88 @@ class _ShowSingleState extends State<ShowSingle> {
 
   Widget showAnoda = Container(
     child: SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Column(
         children: [
-          Text('New york won\'t return to normal life soon, though it has reduced 42% of it\'s air pollution',style: TextStyle(fontFamily: 'Josefin Sans',color: Colors.black,fontSize: 30,),),
-          SizedBox(height: 10,),
+          Text(
+            'New york won\'t return to normal life soon, though it has reduced 42% of it\'s air pollution',
+            style: TextStyle(
+              fontFamily: 'Josefin Sans',
+              color: Colors.black,
+              fontSize: 30,
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
           Image.asset('assets/cars.jpg'),
-          SizedBox(height: 20,),
-          Text('New york won\'t return to normal life soon, though it has reduced 42% of it\'s air pollution,New york won\'t return to normal life soon, though it has reduced 42% of it\'s air pollution',style: TextStyle(fontFamily: 'Product Sans',color: Colors.black,fontSize: 18,),),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            'New york won\'t return to normal life soon, though it has reduced 42% of it\'s air pollution,New york won\'t return to normal life soon, though it has reduced 42% of it\'s air pollution',
+            style: TextStyle(
+              fontFamily: 'Product Sans',
+              color: Colors.black,
+              fontSize: 18,
+            ),
+          ),
         ],
       ),
     ),
   );
 
-    void getBlogDetails() async{
-      String blogId = widget.blogId;
-     var response = await networkHandler.get('blogPost/'+ blogId);
+  void getBlogDetails() async {
+    String blogId = widget.blogId;
+    var response = await networkHandler.get('blogPost/' + blogId);
 //     print(response);
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        Map<String, dynamic> map = json.decode(response.body);
-        Map<String,dynamic> myblogData = map["data"];
-        print(myblogData);
-
-
-      }
+    if (response.statusCode == 200 || response.statusCode == 201) {
+      Map<String, dynamic> map = json.decode(response.body);
+      Map<String, dynamic> myblogData = map["data"];
+      print(myblogData);
+      String realcoverImage = myblogData['coverImage'];
+      String cutUploadAway = realcoverImage.substring(8);
+      print('this is cutimage ${cutUploadAway}');
+      setState(() {
+        showSingleBlogLists = Container(
+          child: SingleChildScrollView(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Column(
+              children: [
+                Text(
+                  myblogData['title'],
+                  style: TextStyle(
+                    fontFamily: 'Josefin Sans',
+                    color: Colors.black,
+                    fontSize: 30,
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Image.network(
+                  'https://hidden-dusk-12670.herokuapp.com/uploads/' +
+                      cutUploadAway,
+                  fit: BoxFit.cover,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  myblogData['body'],
+                  style: TextStyle(
+                    fontFamily: 'Product Sans',
+                    color: Colors.black,
+                    fontSize: 18,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      });
     }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,25 +199,19 @@ class _ShowSingleState extends State<ShowSingle> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(FeatherIcons.arrowLeftCircle, size: 30.0, color: Colors.blueGrey),
+          icon: Icon(FeatherIcons.arrowLeftCircle,
+              size: 30.0, color: Colors.blueGrey),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         elevation: 0,
-
         centerTitle: true,
         actions: [
-          FlatButton(
-              onPressed: () {
-
-              },
-              child: Icon(FeatherIcons.share2)
-          ),
+          FlatButton(onPressed: () {}, child: Icon(FeatherIcons.share2)),
         ],
       ),
       body: showSingleBlogLists,
-
       bottomNavigationBar: BottomAppBar(
         child: Card(
           elevation: 1,
@@ -174,16 +223,23 @@ class _ShowSingleState extends State<ShowSingle> {
             child: Row(
               children: [
                 Icon(FeatherIcons.thumbsUp),
-                SizedBox(width: 20,),
+                SizedBox(
+                  width: 20,
+                ),
                 Icon(FeatherIcons.thumbsDown),
                 Expanded(
-
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        IconButton(icon: Icon(FeatherIcons.messageSquare,color: Colors.black,), onPressed: null,),
-                      ],
-                    ))
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                        FeatherIcons.messageSquare,
+                        color: Colors.black,
+                      ),
+                      onPressed: null,
+                    ),
+                  ],
+                ))
               ],
             ),
           ),
