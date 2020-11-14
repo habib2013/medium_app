@@ -108,50 +108,30 @@ class _ShowSingleState extends State<ShowSingle> {
     ),
   );
 
-  Widget showAnoda = Container(
-    child: SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-      child: Column(
-        children: [
-          Text(
-            'New york won\'t return to normal life soon, though it has reduced 42% of it\'s air pollution',
-            style: TextStyle(
-              fontFamily: 'Josefin Sans',
-              color: Colors.black,
-              fontSize: 30,
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Image.asset('assets/cars.jpg'),
-          SizedBox(
-            height: 20,
-          ),
-          Text(
-            'New york won\'t return to normal life soon, though it has reduced 42% of it\'s air pollution,New york won\'t return to normal life soon, though it has reduced 42% of it\'s air pollution',
-            style: TextStyle(
-              fontFamily: 'Product Sans',
-              color: Colors.black,
-              fontSize: 18,
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
 
   void getBlogDetails() async {
     String blogId = widget.blogId;
     var response = await networkHandler.get('blogPost/' + blogId);
-//     print(response);
+    var responseAPi =  await networkHandler.get('http://newsapi.org/v2/top-headlines?country=ng&category=technology&apiKey=814c2572e4ee4517a676a3cafead582d');
+//    Map<String, dynamic> map = json.decode(responseAPi.body);
+//    Map<String, dynamic> apiData = map["articles"];
+//    print('this is the data fetched from API');
+//    print(apiData);
+
+//    if (responseAPi.body['status'] == 200 || responseAPi.statusCode == 201) {
+//      Map<String, dynamic> map = json.decode(responseAPi.body);
+//      List<dynamic> apiData = map["articles"];
+//      print(apiData);
+
+
+    //     print(response);
     if (response.statusCode == 200 || response.statusCode == 201) {
       Map<String, dynamic> map = json.decode(response.body);
       Map<String, dynamic> myblogData = map["data"];
-      print(myblogData);
+//      print(myblogData);
       String realcoverImage = myblogData['coverImage'];
       String cutUploadAway = realcoverImage.substring(8);
-      print('this is cutimage ${cutUploadAway}');
+//      print('this is cutimage ${cutUploadAway}');
       setState(() {
         showSingleBlogLists = Container(
           child: SingleChildScrollView(
@@ -170,7 +150,7 @@ class _ShowSingleState extends State<ShowSingle> {
                   height: 10,
                 ),
                 Image.network(
-                  'https://hidden-dusk-12670.herokuapp.com/uploads/' +
+                  'http://192.168.137.1:5003/uploads/' +
                       cutUploadAway,
                   fit: BoxFit.cover,
                 ),

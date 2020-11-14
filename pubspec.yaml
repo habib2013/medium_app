@@ -44,6 +44,7 @@ dependencies:
   dio: ^3.0.8
   flutter_feather_icons:
   introduction_screen: ^1.0.7
+  flutter_offline: "^0.3.0"
 
 
 dev_dependencies:
