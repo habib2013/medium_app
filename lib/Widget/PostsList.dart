@@ -77,7 +77,6 @@ class _PostsListState extends State<PostsList> {
     ),
   );
 
-
   void fetchPostsList() async {
     var response = await networkHandler.get('blogPost/getOwnBlog');
 
@@ -91,35 +90,48 @@ class _PostsListState extends State<PostsList> {
           itemCount: myblogData.length,
           itemBuilder: (context, position) {
             String realcoverImage = myblogData[position]["coverImage"];
-              if (position == 0) {
-                return Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
-
-                    child: Column(
-
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Hello 🌱',style: TextStyle(fontFamily: 'Josefin Sans',fontSize: 22,color: Colors.blueGrey),),
-                          SizedBox(height: 15,),
-                        Row(
-                          children: [
-                            Text(myblogData[position]["username"] + ",",style: TextStyle(fontFamily: 'Josefin Sans',fontSize: 40,color: Colors.black,fontWeight: FontWeight.bold),),
-                          ],
-                        )
-                        ,SizedBox(height: 10,),
+            if (position == 0) {
+              return Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Hello 🌱',
+                        style: TextStyle(
+                            fontFamily: 'Josefin Sans',
+                            fontSize: 22,
+                            color: Colors.blueGrey),
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            myblogData[position]["username"] + ",",
+                            style: TextStyle(
+                                fontFamily: 'Josefin Sans',
+                                fontSize: 40,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
 //                        Text('Your Daily Read',style: TextStyle(fontFamily: 'Product Sans',fontSize: 18,color: Colors.black),),
 //
-                      ],
-                    ),
-
+                    ],
                   ),
-                );
-
-              }
+                ),
+              );
+            }
 
             print(realcoverImage);
             String cutUploadAway = realcoverImage.substring(8);
@@ -155,93 +167,173 @@ class _PostsListState extends State<PostsList> {
               );
             }
 
-
             return Column(
               children: [
                 InkWell(
-                  onTap: (){
-                  String blogPostId = myblogData[position]["_id"] ;
+                  onTap: () {
+                    String blogPostId = myblogData[position]["_id"];
 
-                   Navigator.push(context, MaterialPageRoute(builder: (context) => ShowSingle(blogId: blogPostId)));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                ShowSingle(blogId: blogPostId)));
                   },
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(0.0, 0.5, 0.0, 0.5),
                     child: Card(
-                      elevation: 0,
                       child: Padding(
                         padding: EdgeInsets.all(15.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 4.0, horizontal: 7.0),
-                              child: Text(
-                                'categoryTitle',
-                                style: TextStyle(
-                                    color: Colors.black38,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 12.0),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 12.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  Flexible(
-                                    flex: 1,
-                                    child: Container(
-                                      height: 80.0,
-                                      width: 80.0,
-                                      child: Image.network(
-                                        'http://192.168.137.1:5003/uploads/' +
-                                            cutUploadAway,
-                                        fit: BoxFit.cover,
+                              padding:
+                                  EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 12.0),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Flexible(
+                                        flex: 1,
+                                        child: Container(
+                                          height: 100.0,
+                                          width: 80.0,
+                                          child: Image.network(
+                                            'http://192.168.137.1:5003/uploads/' +
+                                                cutUploadAway,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                  Flexible(
-                                    child: Text(
-                                      myblogData[position]["title"] ?? 'Nothing',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          fontFamily: 'Product Sans',
-                                          fontSize: 18.0),
-                                    ),
-                                    flex: 3,
+                                      Flexible(
+                                        child: Column(
+                                          children: [
+                                            Row(
+
+                                              children: [
+                                                Row(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      'Category',
+                                                      style: TextStyle(
+                                                          color: Colors.black45,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontFamily:
+                                                              'Josefin Sans',
+                                                          fontSize: 14.0),
+                                                    ),
+                                                  ],
+                                                ),
+                                                SizedBox(width: 170,),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Icon(FeatherIcons.moreVertical)
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 10,
+                                            ),
+                                            Text(
+                                              myblogData[position]["title"] ??
+                                                  'Nothing',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontFamily: 'Product Sans',
+                                                  fontSize: 17.0),
+                                            ),
+                                            SizedBox(
+                                              height: 15,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  myblogData[position]
+                                                          ["username"] ??
+                                                      'Nothing',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontFamily:
+                                                          'Josefin Sans',
+                                                      color: Colors.black,
+                                                      fontSize: 16.0),
+                                                ),
+                                                SizedBox(
+                                                  width: 20,
+                                                ),
+                                                Text(
+                                                  '5 mins read',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w400,
+                                                      fontFamily:
+                                                          'Josefin Sans',
+                                                      color: Colors.black45,
+                                                      fontSize: 14.0),
+                                                ),
+                                                SizedBox(
+                                                  width: 50,
+                                                ),
+                                                Icon(
+                                                  Icons.star,
+                                                  color: Colors.orange,
+                                                  size: 20,
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        flex: 3,
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Row(
-                                      children: [
-                                        Icon(FeatherIcons.user),
-                                        Text(
-                                          myblogData[position]["username"] ??
-                                              'Nothing',
-                                          style: TextStyle(
-                                              fontSize: 14.0,
-                                              fontFamily: 'Josefin Sans'),
-                                        ),
-                                        SizedBox(
-                                          width: 13,
-                                        ),
-
-                                      ],
-                                    ),
-                                  ],
-                                ),
-//                        Icon(FeatherIcons.heart)
-
-                              ],
-                            )
+                            SizedBox(
+                              height: 10,
+                            ),
+//                  Row(
+//                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                    children: <Widget>[
+//                      Column(
+//                        crossAxisAlignment: CrossAxisAlignment.start,
+//                        children: <Widget>[
+//
+//                          Row(
+//                            children: [
+//                              Icon(FeatherIcons.user,color: Colors.blueGrey,),
+//                              Text(
+//                                " Habib",
+//                                style: TextStyle(fontSize: 14.0,fontFamily: 'Josefin Sans'),
+//
+//                              ),
+//                              SizedBox(width: 20.0,),
+//                              Icon(FeatherIcons.calendar,color: Colors.blueGrey,),
+//                              Text(
+//                                '',
+//                                style: TextStyle(fontSize: 14.0),
+//
+//                              ),
+//                            ],
+//                          ),
+//
+//                        ],
+//                      ),
+//                      Icon(FeatherIcons.heart)
+//                    ],
+//                  )
                           ],
                         ),
                       ),

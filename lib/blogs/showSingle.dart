@@ -118,11 +118,10 @@ class _ShowSingleState extends State<ShowSingle> {
 //    print('this is the data fetched from API');
 //    print(apiData);
 
-//    if (responseAPi.body['status'] == 200 || responseAPi.statusCode == 201) {
-//      Map<String, dynamic> map = json.decode(responseAPi.body);
-//      List<dynamic> apiData = map["articles"];
-//      print(apiData);
 
+//      Map<String, dynamic> map = json.decode(responseAPi.body);
+//      List<dynamic> apiData = map["articles"][0]['author'];
+//      print(apiData);
 
     //     print(response);
     if (response.statusCode == 200 || response.statusCode == 201) {

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:medium_app/NetworkHandler.dart';
 import 'package:medium_app/models/profileModel.dart';
+import 'package:flutter_offline/flutter_offline.dart';
 
 class MainProfile extends StatefulWidget {
   @override

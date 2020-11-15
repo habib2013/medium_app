@@ -162,7 +162,7 @@ class _NewHomePageState extends State<NewHomePage> {
 
             ListTile(
               title: Text('All Posts',style: TextStyle(fontFamily: 'Josefin Sans',color: Colors.black),),
-              leading: Icon(FeatherIcons.compass),
+              leading: Icon(FeatherIcons.grid),
               onTap: (){
 
               },
@@ -174,13 +174,7 @@ class _NewHomePageState extends State<NewHomePage> {
 
               },
             ),
-            ListTile(
-              title: Text('Settings',style: TextStyle(fontFamily: 'Josefin Sans',color: Colors.black),),
-              leading: Icon(FeatherIcons.settings),
-              onTap: (){
 
-              },
-            ),
             ListTile(
               title: Text('Feedbacks',style: TextStyle(fontFamily: 'Josefin Sans',color: Colors.black),),
               leading: Icon(FeatherIcons.mic),
@@ -269,7 +263,7 @@ class _NewHomePageState extends State<NewHomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: Icon(FeatherIcons.barChart2),
+                  icon: Icon(FeatherIcons.grid),
                   color: currentState == 0
                       ? Colors.blueGrey
                       : Colors.blueGrey[300],
