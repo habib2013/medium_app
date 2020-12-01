@@ -113,8 +113,8 @@ class _LoginPageState extends State<LoginPage> {
           circular = true;
         });
         Map<String,String> data = {
-          "username" : _usernameEditingController.text,
-          "password": _passwordEditingController.text,
+          "username" : _usernameEditingController.text.toLowerCase(),
+          "password": _passwordEditingController.text.toLowerCase(),
         };
         var response = await networkHandler.post("user/login", data);
 

@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:medium_app/NetworkHandler.dart';
 import 'package:shimmer/shimmer.dart';
-
+import 'package:medium_app/models/TechNews.dart';
+import 'package:http/http.dart' as http;
 class ShowSingle extends StatefulWidget {
   final String blogId;
 
@@ -16,13 +18,16 @@ class ShowSingle extends StatefulWidget {
 
 class _ShowSingleState extends State<ShowSingle> {
   NetworkHandler networkHandler = NetworkHandler();
-
+  TechNews techie = TechNews();
   @override
   void initState() {
     // TODO: implement initState
+
     getBlogDetails();
     super.initState();
   }
+
+
 
   Widget showSingleBlogLists = Container(
     child: Shimmer.fromColors(
@@ -112,16 +117,7 @@ class _ShowSingleState extends State<ShowSingle> {
   void getBlogDetails() async {
     String blogId = widget.blogId;
     var response = await networkHandler.get('blogPost/' + blogId);
-    var responseAPi =  await networkHandler.get('http://newsapi.org/v2/top-headlines?country=ng&category=technology&apiKey=814c2572e4ee4517a676a3cafead582d');
-//    Map<String, dynamic> map = json.decode(responseAPi.body);
-//    Map<String, dynamic> apiData = map["articles"];
-//    print('this is the data fetched from API');
-//    print(apiData);
 
-
-//      Map<String, dynamic> map = json.decode(responseAPi.body);
-//      List<dynamic> apiData = map["articles"][0]['author'];
-//      print(apiData);
 
     //     print(response);
     if (response.statusCode == 200 || response.statusCode == 201) {

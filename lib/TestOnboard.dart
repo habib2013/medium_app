@@ -43,20 +43,23 @@ class _TestOnboardState extends State<TestOnboard> {
         PageViewModel(
           title: "Learn as you go",
           body:
-          "Download the Stockpile app and master the market with our mini-lesson.",
+          "Gat all Nigeria tech news at your fingertip"
+              " from reliable sources",
           image: _buildImage('thirdimg'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Kids and teens",
+          title: "For everyone",
           body:
-          "Kids and teens can track their stocks 24/7 and place trades that you approve.",
+          "You don't have to be a tech geek, you can leverage"
+              " from ocean of ideas to get started ",
           image: _buildImage('ideaboi'),
           decoration: pageDecoration,
         ),
         PageViewModel(
-          title: "Another title page",
-          body: "Another beautiful body text for this example onboarding",
+          title: " Your Ideas counts ",
+          body: "We don't just feed you with news;"
+              "you are free to add yours",
           image: _buildImage('readingbook'),
           footer: RaisedButton(
             onPressed: () {

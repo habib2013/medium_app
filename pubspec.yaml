@@ -39,12 +39,13 @@ dependencies:
   showcaseview:
   cached_network_image: ^2.2.0+1
   shared_preferences:
-  multi_image_picker: ^4.6.1
-  carousel_pro: ^1.0.0
-  dio: ^3.0.8
+  dio:
+
   flutter_feather_icons:
   introduction_screen: ^1.0.7
   flutter_offline: "^0.3.0"
+  flutter_dropdown: ^0.0.8
+
 
 
 dev_dependencies:

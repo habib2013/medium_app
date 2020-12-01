@@ -80,10 +80,10 @@ class _SplashScreenState extends State<SplashScreen> {
 //        page = TestOnboard();
         displayOnboarding() async {
           preferences = await SharedPreferences.getInstance();
-          bool onboardingVisibilityStats = preferences.getBool("showOnboardingPageTesting");
+          bool onboardingVisibilityStats = preferences.getBool("newShowOnboardingPagewe");
           if (onboardingVisibilityStats == null) {
             page =  TestOnboard();
-            preferences.setBool("showOnboardingPageTesting", false);
+            preferences.setBool("newShowOnboardingPagewe", false);
             return true;
           }
           else {

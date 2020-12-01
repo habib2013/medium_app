@@ -107,7 +107,7 @@ class Onboarding extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  "CapMee",
+                  "Spidium",
                   style: goldCoinWhiteStyle,
                 ),
                 Text(

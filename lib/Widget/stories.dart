@@ -80,7 +80,7 @@ class _StoryCard extends StatelessWidget {
             bottom: 8.0,
             left: 8.0,
             right: 8.0,
-            child: Text('This is the first post by me and the fdjkdfjkd',
+            child: Text('This is the first post by me and the end of the',
               style:const TextStyle(
                   color: Colors.white,fontWeight: FontWeight.bold,fontFamily: 'Josefin Sans'
               ),
@@ -91,8 +91,5 @@ class _StoryCard extends StatelessWidget {
         ],
       ),
     );
-
-
-
   }
 }

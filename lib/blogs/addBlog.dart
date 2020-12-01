@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:medium_app/NetworkHandler.dart';
 import 'package:medium_app/customWidgets/OverlayCard.dart';
 import 'package:medium_app/pages/HomePage.dart';
-import 'package:multi_image_picker/multi_image_picker.dart';
-
+import 'package:flutter_dropdown/flutter_dropdown.dart';
 
 class AddBlog extends StatefulWidget {
   @override
@@ -18,10 +18,13 @@ class _AddBlogState extends State<AddBlog> {
   var validatedInput = true;
   TextEditingController _blogtitle = TextEditingController();
   TextEditingController _blogBody = TextEditingController();
+  TextEditingController _category = TextEditingController();
+  TextEditingController _readTime = TextEditingController();
   bool circular = false;
   final _globalKey = GlobalKey<FormState>();
   NetworkHandler networkHandler = NetworkHandler();
-  List<Asset> images = List<Asset>();
+
+
   PickedFile _imageFile;
   final ImagePicker _picker = ImagePicker();
 
@@ -29,6 +32,8 @@ class _AddBlogState extends State<AddBlog> {
 
   @override
   Widget build(BuildContext context) {
+
+    String _currentSelectedValue = "Medical";
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -68,7 +73,9 @@ class _AddBlogState extends State<AddBlog> {
                     color: Colors.blueGrey[400],
                     fontFamily: 'Josefin Sans',
                     fontWeight: FontWeight.bold),
-              )),
+              )
+          
+          ),
         ],
       ),
       body: Padding(
@@ -79,11 +86,92 @@ class _AddBlogState extends State<AddBlog> {
             children: [
               _ourInputsForm("Image & Blog Title", _blogtitle),
               SizedBox(
-                height: 30,
+                height: 10,
               ),
               _ourInputsForm("Body", _blogBody),
               SizedBox(
-                height: 30,
+                height: 10,
+              ),
+
+              Text('Category',style:TextStyle(fontFamily: 'Josefin Sans',
+                  color: Colors.black,fontSize: 18)),
+              SizedBox(
+                height: 5,
+              ),
+              Container(
+                height: 60,
+                child: FormField<String>(
+
+                  builder: (FormFieldState<String> state) {
+                    return InputDecorator(
+                      decoration: InputDecoration(
+
+                          labelStyle: TextStyle(color: Colors.blueAccent, fontSize: 12.0),
+                          errorStyle: TextStyle(color: Colors.redAccent, fontSize: 12.0),
+                          hintText: 'Please select expense',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0))),
+                      isEmpty: _currentSelectedValue == '',
+                      child: DropdownButtonHideUnderline(
+                        child: DropDown<String>(
+                          items: <String>["Code challenge", "Start up", "AI trends","Algorithms","Hacking"],
+                          initialValue: "Start up",
+                          hint: Text("Select Category"),
+                          onChanged: (String newValue){
+                            setState(() {
+                              _currentSelectedValue = newValue;
+                              print(_currentSelectedValue);
+                              _category.text = _currentSelectedValue;
+                            });
+                          },
+                        ),
+
+                      ),
+                    );
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+
+              Text('Read Time',style:TextStyle(fontFamily: 'Josefin Sans',
+                  color: Colors.black,fontSize: 18)),
+              SizedBox(
+                height: 5,
+              ),
+              Container(
+                height: 60,
+                child: FormField<String>(
+
+                  builder: (FormFieldState<String> state) {
+                    return InputDecorator(
+                      decoration: InputDecoration(
+                          labelStyle: TextStyle(color: Colors.blueAccent, fontSize: 12.0),
+                          errorStyle: TextStyle(color: Colors.redAccent, fontSize: 12.0),
+                          hintText: 'Please select expense',
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(5.0))),
+                      isEmpty: _currentSelectedValue == '',
+                      child: DropdownButtonHideUnderline(
+                        child: DropDown<String>(
+                          items: <String>["2mins", "3mins", "4mins","5mins","6mins","7mins"],
+                          initialValue: "3mins",
+                          hint: Text("Select Category"),
+                          onChanged: (String newValue){
+                            setState(() {
+                              _currentSelectedValue = newValue;
+                              print(_currentSelectedValue);
+                              _readTime.text = _currentSelectedValue;
+                            });
+                          },
+                        ),
+
+                      ),
+                    );
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 15,
               ),
               _submitButton(),
             ],
@@ -123,7 +211,7 @@ class _AddBlogState extends State<AddBlog> {
 
                   },
                   icon: Icon(
-                    Icons.image,
+                    FeatherIcons.image,
                     color: Colors.blueGrey,
                   ),
                 )
@@ -142,7 +230,9 @@ class _AddBlogState extends State<AddBlog> {
           Map<String, String> data = {
             "title": _blogtitle.text,
             "body": _blogBody.text,
-
+            "category": _category.text,
+            "readTime": _readTime.text,
+            "datePublished": '12/10/2020'
           };
           var response = await networkHandler.post("blogPost/Add", data);
           if (response.statusCode == 200 || response.statusCode == 201) {
@@ -197,10 +287,21 @@ class _AddBlogState extends State<AddBlog> {
                   Colors.blueGrey,
                   Colors.blueGrey[300],
                 ])),
-        child: Text(
-          'Add Blog',
-          style: TextStyle(
-              fontSize: 20, color: Colors.white, fontFamily: 'Josefin Sans'),
+        child: Center(
+          child: Row(
+            mainAxisAlignment:  MainAxisAlignment.center,
+            children: [
+
+              Text(
+                'Post Now',
+                style: TextStyle(
+                    fontSize: 20, color: Colors.white, fontFamily: 'Josefin Sans'),
+              ),
+
+              SizedBox(width: 50,),
+              Icon(FeatherIcons.arrowRight,color: Colors.white,),
+            ],
+          ),
         ),
       ),
     );

@@ -28,50 +28,51 @@ class _PostsListState extends State<PostsList> {
       highlightColor: Colors.grey[100],
       enabled: true,
       child: ListView.builder(
-        itemBuilder: (_, __) => Padding(
-          padding: const EdgeInsets.only(bottom: 8.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: 48.0,
-                height: 48.0,
-                color: Colors.white,
+        itemBuilder: (_, __) =>
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 48.0,
+                    height: 48.0,
+                    color: Colors.white,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                  ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          width: double.infinity,
+                          height: 8.0,
+                          color: Colors.white,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 2.0),
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: 8.0,
+                          color: Colors.white,
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 2.0),
+                        ),
+                        Container(
+                          width: 40.0,
+                          height: 8.0,
+                          color: Colors.white,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8.0),
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      width: double.infinity,
-                      height: 8.0,
-                      color: Colors.white,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 2.0),
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 8.0,
-                      color: Colors.white,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 2.0),
-                    ),
-                    Container(
-                      width: 40.0,
-                      height: 8.0,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
+            ),
         itemCount: 2,
       ),
     ),
@@ -189,12 +190,12 @@ class _PostsListState extends State<PostsList> {
                           children: <Widget>[
                             Padding(
                               padding:
-                                  EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 12.0),
+                              EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 12.0),
                               child: Column(
                                 children: [
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Flexible(
                                         flex: 1,
@@ -223,18 +224,23 @@ class _PostsListState extends State<PostsList> {
                                                       style: TextStyle(
                                                           color: Colors.black45,
                                                           fontWeight:
-                                                              FontWeight.w500,
+                                                          FontWeight.w500,
                                                           fontFamily:
-                                                              'Josefin Sans',
+                                                          'Josefin Sans',
                                                           fontSize: 14.0),
                                                     ),
                                                   ],
                                                 ),
                                                 SizedBox(width: 170,),
                                                 Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  mainAxisAlignment: MainAxisAlignment
+                                                      .spaceBetween,
                                                   children: [
-                                                    Icon(FeatherIcons.moreVertical)
+//                                                    Icon(FeatherIcons.moreVertical)
+                                                    IconButton(icon: Icon(
+                                                        FeatherIcons
+                                                            .moreVertical),
+                                                        onPressed: null)
                                                   ],
                                                 )
                                               ],
@@ -255,17 +261,17 @@ class _PostsListState extends State<PostsList> {
                                             ),
                                             Row(
                                               mainAxisAlignment:
-                                                  MainAxisAlignment.start,
+                                              MainAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   myblogData[position]
-                                                          ["username"] ??
+                                                  ["username"] ??
                                                       'Nothing',
                                                   style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.w400,
+                                                      FontWeight.w400,
                                                       fontFamily:
-                                                          'Josefin Sans',
+                                                      'Josefin Sans',
                                                       color: Colors.black,
                                                       fontSize: 16.0),
                                                 ),
@@ -276,9 +282,9 @@ class _PostsListState extends State<PostsList> {
                                                   '5 mins read',
                                                   style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.w400,
+                                                      FontWeight.w400,
                                                       fontFamily:
-                                                          'Josefin Sans',
+                                                      'Josefin Sans',
                                                       color: Colors.black45,
                                                       fontSize: 14.0),
                                                 ),

@@ -161,8 +161,8 @@ class _CreateProfileScreenState extends State<CreateProfileScreen> {
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
                 colors: [
-                  Colors.deepPurple,
-                  Colors.deepPurpleAccent,
+                  Colors.blueGrey,
+                  Colors.blueGrey[100],
                 ])),
         child: circular ? CircularProgressIndicator() : Text(
           'Update Profile',
